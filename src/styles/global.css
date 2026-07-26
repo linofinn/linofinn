@@ -3,41 +3,179 @@
 
 @import "./design.css";
 
+/* ===========================
+RESET
+=========================== */
+
 * {
     box-sizing: border-box;
 }
 
 html {
-
-    background: var(--bg);
-
-    color: var(--text);
-
-    font-family: "Space Mono", monospace;
-
     scroll-behavior: smooth;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Space Mono", monospace;
 }
 
 body {
-
     margin: 0;
-
-    min-height: 100vh;
-
-}
-
-a {
-
-    color: inherit;
-
-    text-decoration: none;
-
 }
 
 img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+    margin: 0;
+}
+
+/* ===========================
+HOME
+=========================== */
+
+.hero {
+
+    padding-top: 7rem;
+
+    padding-left: clamp(14.5rem, 14vw, 16rem);
+
+}
+
+.hero-copy {
+
+    display: inline-block;
+
+}
+
+.hero h1 {
+
+    font-family: "Martian Mono", monospace;
+
+    font-size: clamp(5rem, 15vw, 10rem);
+
+    line-height: .88;
+
+    letter-spacing: -.07em;
+
+}
+
+.hero p {
+
+    margin-top: 2rem;
+
+    margin-left: 17px;
+
+    font-size: 1.6rem;
+
+    line-height: 1.35;
+
+    color: var(--muted);
+
+}
+
+.hero span {
+
+    color: var(--accent);
+
+}
+
+/* ===========================
+FEATURED ARTWORK
+=========================== */
+
+.featured-artwork {
+
+    margin-top: 2.5rem;
+
+}
+
+.featured-artwork img {
 
     display: block;
 
-    max-width: 100%;
+    width: min(75vw, 1400px);
+
+    margin: 0 auto;
+
+}
+
+/* ============================================
+BOTTOM NAV
+============================================ */
+
+.bottom-nav {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10rem;
+
+    margin: 4rem auto 8rem;
+
+}
+
+.bottom-nav a {
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 2rem;
+
+    font-weight: 700;
+
+    letter-spacing: .06em;
+
+    text-transform: uppercase;
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    transition:
+        color .2s ease,
+        transform .2s ease;
+
+}
+
+.bottom-nav a::before,
+.bottom-nav a::after {
+
+    color: var(--muted);
+
+    transition: color .2s ease;
+
+}
+
+.bottom-nav a::before {
+
+    content: "[ ";
+
+}
+
+.bottom-nav a::after {
+
+    content: " ]";
+
+}
+
+.bottom-nav a:hover {
+
+    color: var(--accent);
+
+    transform: translateY(-2px);
+
+}
+
+.bottom-nav a:hover::before,
+.bottom-nav a:hover::after {
+
+    color: var(--accent);
 
 }

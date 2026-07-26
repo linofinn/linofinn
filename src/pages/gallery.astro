@@ -1,16 +1,68 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
+import Container from "../components/Container.astro";
+import GalleryCard from "../components/GalleryCard.astro";
 ---
 
 <Layout title="Gallery">
 
 <Header />
 
-<main>
+<Container>
 
-<h2>Gallery</h2>
+<h1>Gallery</h1>
 
-</main>
+<section>
+
+<GalleryCard
+title="Telephone"
+image="https://placehold.co/800x800"
+/>
+
+<GalleryCard
+title="Fox"
+image="https://placehold.co/800x800"
+/>
+
+<GalleryCard
+title="Bird"
+image="https://placehold.co/800x800"
+/>
+
+<GalleryCard
+title="Mushroom"
+image="https://placehold.co/800x800"
+/>
+
+</section>
+
+</Container>
 
 </Layout>
+
+<style>
+
+section{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:4rem;
+
+margin-top:4rem;
+
+}
+
+@media(max-width:800px){
+
+section{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
