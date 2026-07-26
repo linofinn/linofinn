@@ -1,68 +1,37 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
-import Container from "../components/Container.astro";
 import GalleryCard from "../components/GalleryCard.astro";
+
+import { getCollection } from "astro:content";
+
+const prints = await getCollection("prints");
 ---
 
 <Layout title="Gallery">
 
-<Header />
+    <Header />
 
-<Container>
+    <main class="gallery">
 
-<h1>Gallery</h1>
+        {
 
-<section>
+            prints.map((print) => (
 
-<GalleryCard
-title="Telephone"
-image="https://placehold.co/800x800"
-/>
+                <GalleryCard
 
-<GalleryCard
-title="Fox"
-image="https://placehold.co/800x800"
-/>
+                    title={print.data.title}
 
-<GalleryCard
-title="Bird"
-image="https://placehold.co/800x800"
-/>
+                    image={`/prints/${print.id}/hero.jpg`}
 
-<GalleryCard
-title="Mushroom"
-image="https://placehold.co/800x800"
-/>
+                    slug={print.id}
 
-</section>
+                />
 
-</Container>
+            ))
+
+        }
+
+    </main>
 
 </Layout>
-
-<style>
-
-section{
-
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:4rem;
-
-margin-top:4rem;
-
-}
-
-@media(max-width:800px){
-
-section{
-
-grid-template-columns:1fr;
-
-}
-
-}
-
-</style>

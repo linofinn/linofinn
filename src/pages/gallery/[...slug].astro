@@ -1,0 +1,72 @@
+---
+import { getCollection, render } from "astro:content";
+
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+
+export async function getStaticPaths() {
+
+    const prints = await getCollection("prints");
+
+    return prints.map((print) => ({
+
+        params: {
+
+            slug: print.id
+
+        },
+
+        props: {
+
+            print
+
+        }
+
+    }));
+
+}
+
+const { print } = Astro.props;
+
+const { Content } = await render(print);
+
+---
+
+<Layout title={print.data.title}>
+
+    <Header />
+
+    <main>
+
+        <img
+            src={`/prints/${print.id}/hero.jpg`}
+            alt={print.data.title}
+        />
+
+        <h1>{print.data.title}</h1>
+
+        <p>{print.data.year}</p>
+
+        <p>{print.data.dimensions}</p>
+
+        <p>{print.data.paper}</p>
+
+        <p>{print.data.edition}</p>
+
+        <p>{print.data.price}</p>
+
+        <p>
+
+            {print.data.available ? "Available" : "Sold"}
+
+        </p>
+
+        <a href="#">
+
+            [ Request Print ]
+
+        </a>
+
+    </main>
+
+</Layout>

@@ -1,31 +1,45 @@
 ---
-interface Props{
+interface Props {
 
-title:string;
+title: string;
 
-image:string;
+image: string;
+
+slug: string;
 
 }
 
-const {title,image}=Astro.props;
+const { title, image, slug } = Astro.props;
 ---
 
-<article>
+<article class="gallery-card">
+
+<a href={`/gallery/${slug}`}>
+
+    <img
+
+        src={image}
+
+        alt={title}
+
+    />
+
+</a>
+
+<div class="gallery-links">
+
+    <a href={`/gallery/${slug}`}>
+
+        [ Details ]
+
+    </a>
 
     <a href="#">
-    
-    <img src={image} alt={title} />
-    
+
+        [ Request Print ]
+
     </a>
-    
-    <h3>{title}</h3>
-    
-    <div class="actions">
-    
-    <a href="#">[ Details ]</a>
-    
-    <a href="#">[ Request Print ]</a>
-    
-    </div>
-    
-    </article>
+
+</div>
+
+</article>

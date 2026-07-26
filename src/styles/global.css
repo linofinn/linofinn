@@ -179,3 +179,71 @@ BOTTOM NAV
     color: var(--accent);
 
 }
+
+/* ===========================
+GALLERY
+=========================== */
+
+.gallery {
+
+    width: min(1500px, 92vw);
+
+    margin: 0 auto 8rem;
+
+    display: grid;
+
+    grid-template-columns: repeat(2,1fr);
+
+    gap: 5rem;
+
+}
+
+.gallery-card img {
+
+    width: 100%;
+
+    display: block;
+
+}
+
+.gallery-links {
+
+    margin-top: 1rem;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: .5rem;
+
+}
+
+.gallery-links a {
+
+    font-family: "Space Mono";
+
+    color: var(--text);
+
+}
+
+.gallery-links a::before {
+
+    content: "[ ";
+
+    color: var(--muted);
+
+}
+
+.gallery-links a::after {
+
+    content: " ]";
+
+    color: var(--muted);
+
+}
+
+.gallery-links a:hover {
+
+    color: var(--accent);
+
+}
