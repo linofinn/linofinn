@@ -14,7 +14,7 @@ const prints = defineCollection({
     dimensions: z.string(),
     paper: z.string(),
     edition: z.string(),
-    price: z.string(),
+    price: z.string().optional(),
     available: z.boolean(),
   }),
 });

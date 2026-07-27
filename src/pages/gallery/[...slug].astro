@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-
+import InquiryForm from "../../components/InquiryForm.astro";
 import Layout from "../../layouts/Layout.astro";
 import BottomNav from "../../components/BottomNav.astro";
 
@@ -54,8 +54,6 @@ const { print } = Astro.props;
 
                 <p><span class="label">EDITION</span> {print.data.edition}</p>
 
-                <p><span class="label">PRICE</span> {print.data.price}</p>
-
                 <p>
 
                     <span class="label">STATUS</span>
@@ -75,14 +73,20 @@ const { print } = Astro.props;
             
                     <div class="print-actions">
             
-                        <a
+                        <button
+                            id="show-form"
                             class="bracket-link"
-                            href="#"
+                            type="button"
                         >
                             Request Print
-                        </a>
+                        </button>
             
                     </div>
+
+                    <InquiryForm
+                        slug={print.id}
+                        title={print.data.title}
+                    />
             
                 )
             }
@@ -92,6 +96,84 @@ const { print } = Astro.props;
     </div>
 
     <BottomNav />
+
+    <script is:inline>
+
+        const button = document.getElementById("show-form");
+        const form = document.getElementById("inquiry-form");
+        
+        button?.addEventListener("click", () => {
+        
+            form.classList.add("open");
+        
+            button.remove();
+        
+        });
+        
+        form?.addEventListener("submit", async (event) => {
+        
+            event.preventDefault();
+        
+            const data = new FormData(form);
+        
+            const response = await fetch(form.action, {
+        
+                method: "POST",
+        
+                body: data,
+        
+            });
+        
+            if (response.ok) {
+        
+                form.innerHTML = `
+
+    <div
+        style="
+            display:flex;
+            flex-direction:column;
+            gap:.75rem;
+            padding:3rem 0;
+        "
+    >
+
+    <p
+    style="
+        margin:0;
+        font-size:1.5rem;
+        color:var(--muted);
+        line-height:1.6;
+    "
+>
+    Thank you.
+</p>
+
+<p
+    style="
+        margin:0;
+        font-size:1.5rem;
+        color:var(--text);
+        line-height:1.6;
+    "
+>
+    I'll get back to you as soon as I can.
+</p>
+
+    </div>
+
+`;
+        
+            }
+        
+            else {
+        
+                alert("Something went wrong. Please try again.");
+        
+            }
+        
+        });
+        
+        </script>
 
 </Layout>
 
@@ -107,7 +189,7 @@ const { print } = Astro.props;
 
 .print-header {
 
-    margin-left: -0.3rem;
+    margin-left: 0.6rem;
 
     display: flex;
 
@@ -189,11 +271,102 @@ const { print } = Astro.props;
 
 }
 
+.inquiry-form {
+
+display: flex;
+
+flex-direction: column;
+
+gap: 2rem;
+
+margin-top: 0;
+
+max-height: 0;
+
+opacity: 0;
+
+overflow: hidden;
+
+transform: translateY(-10px);
+
+transition:
+    max-height .45s ease,
+    opacity .30s ease,
+    transform .30s ease,
+    margin-top .30s ease;
+
+}
+
+.inquiry-form.open {
+
+margin-top: 3rem;
+
+max-height: 1200px;
+
+opacity: 1;
+
+transform: translateY(0);
+
+}
+
+.form-group {
+
+display: flex;
+
+flex-direction: column;
+
+gap: .6rem;
+
+}
+
+.form-label {
+
+color: var(--muted);
+
+font-weight: 700;
+
+}
+
+.print-actions .bracket-link {
+
+appearance: none;
+-webkit-appearance: none;
+
+background: transparent;
+
+border: none;
+
+padding: 0;
+
+margin: 0;
+
+color: inherit;
+
+font: inherit;
+
+font-size: 2rem;
+
+cursor: pointer;
+
+}
+
+.print-actions .bracket-link:hover {
+
+color: var(--accent);
+
+}
+
 @media (max-width: 768px) {
 
     .print-layout {
 
         width: calc(100% - 2rem);
+
+    }
+
+    .print-actions .bracket-link {
+
+        font-size: 1.8rem;
 
     }
 

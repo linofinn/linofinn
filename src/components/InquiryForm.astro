@@ -1,0 +1,364 @@
+---
+interface Props {
+    slug: string;
+    title: string;
+}
+
+const { slug, title } = Astro.props;
+---
+
+<form
+    id="inquiry-form"
+    class="inquiry-form"
+    action="https://api.web3forms.com/submit"
+    method="POST"
+>
+
+    <input
+        type="hidden"
+        name="access_key"
+        value="18d59d6e-6c45-4bfd-b8e6-27d5c3629105"
+    />
+
+    <input
+        type="hidden"
+        name="subject"
+        value={`Print Inquiry — ${title}`}
+    />
+
+    <input
+        type="hidden"
+        name="Print"
+        value={slug}
+    />
+
+    <input
+        type="checkbox"
+        name="botcheck"
+        style="display:none"
+        tabindex="-1"
+        autocomplete="off"
+    />
+
+    <div class="form-group">
+
+        <label for="name">Name</label>
+
+        <input
+            id="name"
+            type="text"
+            name="Name"
+            required
+        />
+
+    </div>
+
+    <div class="form-group">
+
+        <label for="email">Email</label>
+
+        <input
+            id="email"
+            type="email"
+            name="Email"
+            required
+        />
+
+    </div>
+
+    <div class="form-group">
+
+        <label for="phone">Phone Number</label>
+
+        <input
+            id="phone"
+            type="tel"
+            name="Phone"
+        />
+
+    </div>
+
+    <div class="form-group">
+
+        <p class="section-title">
+            Preferred Contact
+        </p>
+
+        <label class="choice">
+
+            <input
+                checked
+                type="radio"
+                name="Preferred Contact"
+                value="Email"
+            />
+
+            Email
+
+        </label>
+
+        <label class="choice">
+
+            <input
+                type="radio"
+                name="Preferred Contact"
+                value="Text"
+            />
+
+            Text
+
+        </label>
+
+    </div>
+
+    <div class="form-group">
+
+        <p class="section-title">
+            Delivery
+        </p>
+
+        <label class="choice">
+
+            <input
+                checked
+                type="radio"
+                name="Delivery"
+                value="Ship"
+            />
+
+            Ship
+
+        </label>
+
+        <label class="choice">
+
+            <input
+                type="radio"
+                name="Delivery"
+                value="Pickup"
+            />
+
+            Pickup
+
+        </label>
+
+    </div>
+
+    <div class="form-group">
+
+        <label for="instructions">
+
+            Instructions
+
+        </label>
+
+        <input
+            id="instructions"
+            type="text"
+            name="Instructions"
+            placeholder="Shipping address / pickup details"
+        />
+
+    </div>
+
+    <div class="form-group">
+
+        <label for="message">
+
+            Message
+
+        </label>
+
+        <input
+            id="instructions"
+            type="text"
+            name="Instructions"
+            placeholder="Anything you want me to know?"
+        />
+
+    </div>
+
+    <button
+        class="bracket-link"
+        type="submit"
+    >
+        Send Request
+    </button>
+
+</form>
+
+<style>
+
+.inquiry-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:2rem;
+
+    margin-top:0;
+
+    max-height:0;
+
+    opacity:0;
+
+    overflow:hidden;
+
+    transform:translateY(-12px);
+
+    transition:
+        max-height .45s ease,
+        opacity .35s ease,
+        transform .35s ease,
+        margin-top .35s ease;
+
+}
+
+.inquiry-form.open{
+
+    margin-top:3rem;
+
+    max-height:1600px;
+
+    opacity:1;
+
+    transform:none;
+
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:.75rem;
+
+}
+
+.form-group label{
+
+    color:var(--muted);
+
+    font-weight:700;
+
+}
+
+.section-title{
+
+    color:var(--muted);
+
+    font-weight:700;
+
+    margin:0;
+
+}
+
+.inquiry-form input[type=text],
+.inquiry-form input[type=email],
+.inquiry-form input[type=tel]{
+
+    padding:.4rem 0;
+
+    background:none;
+
+    border:none;
+
+    border-bottom:1px solid var(--muted);
+
+    color:var(--text);
+
+    font:inherit;
+
+}
+
+.inquiry-form textarea {
+
+    padding: 0;
+
+    line-height: 1.5;
+
+    background: none;
+
+    border: none;
+
+    border-bottom: 1px solid var(--muted);
+
+    color: var(--text);
+
+    font: inherit;
+
+    resize: vertical;
+
+}
+
+.inquiry-form input:focus,
+.inquiry-form textarea:focus{
+
+    outline:none;
+
+    border-bottom-color:var(--accent);
+
+}
+
+.choice{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.6rem;
+
+    color:var(--text);
+
+    font-weight:400 !important;
+
+}
+
+.inquiry-form button{
+
+    align-self:center;
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+}
+
+
+.inquiry-success{
+
+    text-align:center;
+
+    padding:3rem 0;
+
+}
+
+.inquiry-success {
+
+display: flex;
+
+flex-direction: column;
+
+gap: .75rem;
+
+padding: 3rem 0;
+
+}
+
+.inquiry-success p {
+
+margin: 0;
+
+font-size: 1.5rem;
+
+line-height: 1.6;
+
+color: var(--muted);
+
+}
+
+</style>
