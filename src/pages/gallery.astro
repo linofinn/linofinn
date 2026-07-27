@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
+import BottomNav from "../components/BottomNav.astro";
 import GalleryCard from "../components/GalleryCard.astro";
 
 import { getCollection } from "astro:content";
@@ -15,23 +16,18 @@ const prints = await getCollection("prints");
     <main class="gallery">
 
         {
-
             prints.map((print) => (
 
                 <GalleryCard
-
                     title={print.data.title}
-
-                    image={`/prints/${print.id}/hero.jpg`}
-
                     slug={print.id}
-
                 />
 
             ))
-
         }
 
     </main>
+
+    <BottomNav />
 
 </Layout>

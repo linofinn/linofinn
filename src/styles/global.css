@@ -37,6 +37,54 @@ h1,h2,h3,h4,h5,h6,p {
 }
 
 /* ===========================
+HEADER
+=========================== */
+
+.site-header {
+
+    margin-left: 2.9rem;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 1.5rem;
+
+    padding: 2rem 0 3rem;
+
+}
+
+.wordmark {
+
+    font-family: "Martian Mono", monospace;
+
+    font-size: 2rem;
+
+    font-weight: 700;
+
+    letter-spacing: -.06em;
+
+    white-space: nowrap;
+
+}
+
+.site-tagline {
+
+    color: var(--muted);
+
+    font-size: 1.2rem;
+
+    white-space: nowrap;
+
+}
+
+.site-tagline span {
+
+    color: var(--accent);
+
+}
+
+/* ===========================
 HOME
 =========================== */
 
@@ -122,7 +170,73 @@ BOTTOM NAV
 
 }
 
-.bottom-nav a {
+/* ===========================
+GALLERY
+=========================== */
+
+.gallery {
+
+    width: min(1100px, 92vw);
+
+    margin: 0 auto 8rem;
+
+    display: grid;
+
+    grid-template-columns: repeat(2,1fr);
+
+    justify-content: center;
+
+    gap: 4rem;
+
+}
+
+.gallery-card {
+
+    max-width: 26rem;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+.gallery-card img {
+
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+}
+
+.gallery-links {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: .75rem;
+
+    margin-top: .75rem;
+
+}
+
+.gallery-links .bracket-link {
+
+    font-size: 2rem;
+
+}
+
+.bracket-link {
+
+    display: inline-block;
 
     font-family: "Space Mono", monospace;
 
@@ -144,8 +258,9 @@ BOTTOM NAV
 
 }
 
-.bottom-nav a::before,
-.bottom-nav a::after {
+.bracket-link::before {
+
+    content: "[ ";
 
     color: var(--muted);
 
@@ -153,19 +268,17 @@ BOTTOM NAV
 
 }
 
-.bottom-nav a::before {
-
-    content: "[ ";
-
-}
-
-.bottom-nav a::after {
+.bracket-link::after {
 
     content: " ]";
 
+    color: var(--muted);
+
+    transition: color .2s ease;
+
 }
 
-.bottom-nav a:hover {
+.bracket-link:hover {
 
     color: var(--accent);
 
@@ -173,76 +286,8 @@ BOTTOM NAV
 
 }
 
-.bottom-nav a:hover::before,
-.bottom-nav a:hover::after {
-
-    color: var(--accent);
-
-}
-
-/* ===========================
-GALLERY
-=========================== */
-
-.gallery {
-
-    width: min(1500px, 92vw);
-
-    margin: 0 auto 8rem;
-
-    display: grid;
-
-    grid-template-columns: repeat(2,1fr);
-
-    gap: 5rem;
-
-}
-
-.gallery-card img {
-
-    width: 100%;
-
-    display: block;
-
-}
-
-.gallery-links {
-
-    margin-top: 1rem;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: .5rem;
-
-}
-
-.gallery-links a {
-
-    font-family: "Space Mono";
-
-    color: var(--text);
-
-}
-
-.gallery-links a::before {
-
-    content: "[ ";
-
-    color: var(--muted);
-
-}
-
-.gallery-links a::after {
-
-    content: " ]";
-
-    color: var(--muted);
-
-}
-
-.gallery-links a:hover {
+.bracket-link:hover::before,
+.bracket-link:hover::after {
 
     color: var(--accent);
 
@@ -316,10 +361,62 @@ MOBILE
 
     }
 
-    .bottom-nav a {
+    .bracket-link {
 
         font-size: 1.8rem;
+    
+    }
 
+    .gallery {
+
+        grid-template-columns: 1fr;
+    
+        justify-items: center;
+    
+        gap: 3rem;
+    
+    }
+    
+    .gallery-card {
+    
+        width: 60vw;
+    
+        max-width: none;
+    
+    }
+
+    .site-header {
+
+        margin-left: 0;
+
+        flex-direction: column;
+    
+        align-items: flex-start;
+    
+        gap: .5rem;
+    
+        padding-bottom: 2rem;
+    
+    }
+    
+    .wordmark {
+    
+        font-size: 1.5rem;
+    
+    }
+    
+    .site-tagline {
+
+        margin-left: 0.1rem;
+    
+        font-size: 1rem;
+
+        white-space: normal;
+
+    }
+
+    .gallery-links .bracket-link.details-link {
+        font-size: 1.5rem;
     }
 
 }

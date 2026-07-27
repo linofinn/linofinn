@@ -1,8 +1,16 @@
+---
+interface Props {
+    slug: string;
+}
+
+const { slug } = Astro.props;
+---
+
 <section class="featured-artwork">
 
     <img
-        src="/prints/meteor_hero.jpg"
-        alt="Featured relief print"
+        src={`/prints/${slug}/${slug}.jpg`}
+        alt={slug}
     />
 
 </section>

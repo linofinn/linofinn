@@ -1,16 +1,182 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
+import BottomNav from "../components/BottomNav.astro";
 ---
 
-<Layout title="About">
+<Layout title="Info">
 
-<Header />
+    <div class="info-layout">
 
-<main>
+        <header class="info-header">
 
-<h2>Gallery</h2>
+            <a href="/" class="wordmark">
+                LINO FINN
+            </a>
 
-</main>
+            <p class="site-tagline">
+                Original relief prints <span>for the people.</span>
+            </p>
+
+        </header>
+
+        <main class="info">
+
+            <section>
+
+                <h2>WELCOME</h2>
+
+                <p>
+                    Howdy y'all! I'm glad you're here. Please use this space to 
+                    relax, unwind, forget about your troubles, and purchase a print!
+                </p>
+
+            </section>
+
+            <section>
+
+                <h2>REQUEST A PRINT</h2>
+
+                <p>
+                    Click the [ Request Print ] button under any of the available 
+                    designs. The form will ask for contact info and delivery preference. 
+                    I'll reply to confirm price and logistics. After that, I get paid, you get a sick 
+                    new piece, and we go our separate ways.
+                </p>
+
+            </section>
+
+            <section>
+
+                <h2>CONTACT</h2>
+
+                <p class="contact-intro">
+                    Drop me a line if you have any quips, questions, queries,
+                    or quarrels.
+                </p>
+
+                <p>
+                    <span>Email</span><br />
+                    finn@linofinn.studio
+                </p>
+
+                <p>
+                    <span>Phone</span><br />
+                    828.707.2713
+                </p>
+
+                <p>
+                    <span>Instagram</span><br />
+                    @lino.finn
+                </p>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <BottomNav />
 
 </Layout>
+
+<style>
+
+.info-layout {
+
+    width: 42rem;
+
+    margin: 0 auto;
+
+}
+
+.info-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 1.5rem;
+
+    padding: 2rem 0 3rem;
+
+}
+
+.info {
+
+    margin-bottom: 6rem;
+
+}
+
+.contact-intro + p {
+
+    margin-top: 1rem;
+
+}
+
+.info section {
+
+    margin-bottom: 4rem;
+
+}
+
+.info h2 {
+
+    margin-bottom: 1rem;
+
+    font-family: "Martian Mono", monospace;
+
+    font-size: 2rem;
+
+}
+
+.info p {
+
+    font-size: 1.25rem;
+
+    line-height: 1.8;
+
+}
+
+.info span {
+
+    color: var(--muted);
+
+    font-weight: 700;
+
+}
+
+@media (max-width: 768px) {
+
+    .info-layout {
+
+        width: calc(100% - 2rem);
+
+    }
+
+    .info-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: .5rem;
+
+        padding-bottom: 2rem;
+
+    }
+
+    .info h2 {
+
+        font-size: 1.6rem;
+
+    }
+
+    .info p {
+
+        font-size: 1.1rem;
+
+    }
+
+}
+
+</style>

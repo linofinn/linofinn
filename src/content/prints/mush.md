@@ -1,5 +1,5 @@
 ---
-title: Meteor
+title: MUSH 2.0
 year: 2026
 dimensions: 12 × 16"
 paper: Heavyweight Cotton

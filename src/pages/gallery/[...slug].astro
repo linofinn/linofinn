@@ -1,72 +1,222 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
-import Header from "../../components/Header.astro";
+import BottomNav from "../../components/BottomNav.astro";
 
 export async function getStaticPaths() {
-
     const prints = await getCollection("prints");
 
     return prints.map((print) => ({
-
         params: {
-
-            slug: print.id
-
+            slug: print.id,
         },
-
         props: {
-
-            print
-
-        }
-
+            print,
+        },
     }));
-
 }
 
 const { print } = Astro.props;
-
-const { Content } = await render(print);
-
 ---
 
 <Layout title={print.data.title}>
 
-    <Header />
+    <div class="print-layout">
 
-    <main>
+        <header class="print-header">
 
-        <img
-            src={`/prints/${print.id}/hero.jpg`}
-            alt={print.data.title}
-        />
+            <a href="/" class="wordmark">
+                LINO FINN
+            </a>
 
-        <h1>{print.data.title}</h1>
+            <p class="site-tagline">
+                Original relief prints <span>for the people.</span>
+            </p>
 
-        <p>{print.data.year}</p>
+        </header>
 
-        <p>{print.data.dimensions}</p>
+        <main class="print-page">
 
-        <p>{print.data.paper}</p>
+            <img
+                class="print-image"
+                src={`/prints/${print.id}/${print.id}.jpg`}
+                alt={print.data.title}
+            />
 
-        <p>{print.data.edition}</p>
+            <div class="print-details">
 
-        <p>{print.data.price}</p>
+                <p><span class="label">YEAR</span> {print.data.year}</p>
 
-        <p>
+                <p><span class="label">DIMENSIONS</span> {print.data.dimensions}</p>
 
-            {print.data.available ? "Available" : "Sold"}
+                <p><span class="label">PAPER</span> {print.data.paper}</p>
 
-        </p>
+                <p><span class="label">EDITION</span> {print.data.edition}</p>
 
-        <a href="#">
+                <p><span class="label">PRICE</span> {print.data.price}</p>
 
-            [ Request Print ]
+                <p>
 
-        </a>
+                    <span class="label">STATUS</span>
+                
+                    <span class={print.data.available ? "status-available" : "status-unavailable"}>
+                
+                        {print.data.available ? "Available" : "Unavailable"}
+                
+                    </span>
+                
+                </p>
 
-    </main>
+            </div>
+
+            {
+                print.data.available && (
+            
+                    <div class="print-actions">
+            
+                        <a
+                            class="bracket-link"
+                            href="#"
+                        >
+                            Request Print
+                        </a>
+            
+                    </div>
+            
+                )
+            }
+
+        </main>
+
+    </div>
+
+    <BottomNav />
 
 </Layout>
+
+<style>
+
+.print-layout {
+
+    width: 45%;
+
+    margin: 0 auto;
+
+}
+
+.print-header {
+
+    margin-left: -0.3rem;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 1.5rem;
+
+    padding: 2rem 0 3rem;
+
+}
+
+.print-page {
+
+    margin-bottom: 6rem;
+
+}
+
+.print-image {
+
+    display: block;
+
+    width: 100%;
+
+    margin: 0 0 3rem;
+
+}
+
+.print-details {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: .75rem;
+
+    font-size: 1.5rem;
+
+    line-height: 1.8;
+
+}
+
+.print-details p {
+
+    margin: 0;
+
+}
+
+.label {
+
+    color: var(--muted);
+
+    font-weight: 700;
+
+    margin-right: .75rem;
+
+}
+
+.status-available {
+
+    color: #4caf50;
+
+}
+
+.status-unavailable {
+
+    color: var(--accent);
+
+}
+
+.print-actions {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 3rem;
+
+}
+
+@media (max-width: 768px) {
+
+    .print-layout {
+
+        width: calc(100% - 2rem);
+
+    }
+
+    .print-header {
+
+        margin-left: 0;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: .5rem;
+
+        padding-bottom: 2rem;
+
+    }
+
+    .print-details {
+
+        font-size: 1.2rem;
+
+    }
+
+}
+
+</style>
