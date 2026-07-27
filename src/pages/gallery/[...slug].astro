@@ -20,7 +20,9 @@ export async function getStaticPaths() {
 const { print } = Astro.props;
 ---
 
-<Layout title={print.data.title}>
+<Layout
+    image={`/prints/${print.id}/${print.id}.jpg`}
+/>
 
     <div class="print-layout">
 
